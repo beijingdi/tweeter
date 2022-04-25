@@ -17,7 +17,7 @@ nav span {
   display: flex;
   flex-direction:row;
   justify-content: space-between;
-  text-align: center;
+  align-items: center;
   margin-right: 1.5em;
   margin-left: 1.5em;
   height: 100%;
