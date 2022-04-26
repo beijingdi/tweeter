@@ -30,6 +30,36 @@ main {
   width: 90%;
 }
 
+.tweet {
+  margin: 30px 0;
+  border: 3px;
+  border-style: solid;
+}
+
+article.tweet header {
+  margin: 0;
+  height: 2em;
+}
+
+article div {
+  margin: 10px 10px;
+  border-bottom: black solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+article.tweet footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px;
+  font-size: 12px;
+  height: 2em;
+}
 
 
 
