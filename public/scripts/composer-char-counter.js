@@ -1,5 +1,4 @@
 $(document).ready(()=> {
-  console.log("loaded");
   let charCounter = 0;
   $("textarea").on("input", ()=> {
     charCounter = $("textarea").val().length;

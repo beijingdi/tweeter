@@ -36,6 +36,10 @@ main {
   border-style: solid;
 }
 
+article:hover {
+  box-shadow: 10px 10px 8px rgba(22, 22, 22, 0.2); 
+}
+
 article.tweet header {
   margin: 0;
   height: 2em;
@@ -60,6 +64,8 @@ article.tweet footer {
   font-size: 12px;
   height: 2em;
 }
+
+
 
 
 
