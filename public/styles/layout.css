@@ -65,6 +65,9 @@ article.tweet footer {
   height: 2em;
 }
 
+footer span i:hover {
+  color: green;
+}
 
 
 
