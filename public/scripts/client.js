@@ -10,7 +10,13 @@
 const createTweetElement = function(tweet) {
   let $tweet =  `
   <article class = "tweet">
-    <header></header>
+    <header>
+      <span>
+        <img src=${tweet.user.avatars}>
+        <p>${tweet.user.name}</p>
+      </span>
+      <span>${tweet.user.handle}</span>
+    </header>
     <div>
       ${tweet.content.text}
     </div>
@@ -45,7 +51,6 @@ $(document).ready(function() {
   const loadTweets = () => {
     $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));
   };
-    loadTweets();
   /*
   ** handler for posting new tweets
   */
@@ -54,14 +59,24 @@ $(document).ready(function() {
    
     const formData = $("form").serialize();
     console.log(formData);
+    // error handling for empty tweets
+    if (formData.length == 5) {
+      window.alert("tweet cannot be emplty");
+    }
+    // error handling for tweets exceeding 140 chars
+    if (formData.length > 145) {
+      window.alert("tweet cannot exceeds 140 characters");
+      throw error;
+    }
     $.ajax({
       method: "POST",
       data: formData,
       url: "/tweets"
     })
-    .then((res) => loadTweets(res));
-  }
+    .then((res) => loadTweets(res))
+  };
+
   $("form").on("submit",(e) => {postNewTweet(e)});
- 
+  loadTweets();
 });
 
