@@ -70,4 +70,58 @@ const  renderTweets = (tweets) => {
 
 renderTweets(data);
 
+
+const postNewTweet = (event) => {
+  event.preventDefault();
+  const formData = $(this).serialize();
+  console.log(formData);
+  $.ajax({
+    method: "POST",
+    data: formData,
+    url: "/tweets",
+  });
+}
+
+$("#postNewTweet").submit(postNewTweet);
+
 });
+
+
+
+
+  
+
+    // const addTweet = (user) => {
+    //   // Create base HTML elements
+    //   const $article = $("<article>");
+    //   const $h1 = $("<h1>");
+    //   const $ul = $("<ul>");
+
+      // Create title of section
+      // if (user.error) {
+      //   $h1.text("There was an error while registering");
+      // } else {
+      //   $h1.text("Succesfull registration!");
+      // }
+
+      // // Add class to section if there is a problem
+      // if (user.error) {
+      //   $section.addClass("error");
+      // }
+
+      // If successfull, add list items to the ul
+    //   if (!user.error) {
+    //     for (const key in user) {
+    //       const $li = $("<li>");
+    //       $li.text(`${key}: ${user[key]}`);
+    //       $ul.append($li);
+    //     }
+    //   }
+
+    //   // Add the structure
+    //   $section.append($h1);
+    //   $section.append($ul);
+
+    //   // Return the structure in the page
+    //   $("body").append($section);
+    // };
