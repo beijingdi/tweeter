@@ -58,7 +58,6 @@ $(document).ready(function() {
     event.preventDefault();
    
     const formData = $("form").serialize();
-    console.log(formData);
     // error handling for empty tweets
     if (formData.length == 5) {
       window.alert("tweet cannot be emplty");
@@ -73,10 +72,15 @@ $(document).ready(function() {
       data: formData,
       url: "/tweets"
     })
-    .then((res) => loadTweets(res))
+    .then((res) => {
+      $("#tweet-text").val("");
+      loadTweets(res);
+    });
   };
 
   $("form").on("submit",(e) => {postNewTweet(e)});
   loadTweets();
+
 });
+
 
