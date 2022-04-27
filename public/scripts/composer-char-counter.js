@@ -7,5 +7,4 @@ $(document).ready(()=> {
       $(".counter").css('color','red');
     }
   });
-  // --- our code goes here ---
 });

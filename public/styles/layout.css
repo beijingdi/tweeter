@@ -9,11 +9,9 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
 /*
  * Global layout stuff
  */
-
 
 body {
   color: #545149;
