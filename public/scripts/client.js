@@ -5,9 +5,8 @@
  */
 
 /*
-** create the html element for a tweet and render all tweets
+** create the html element for a tweet 
 */
-
 const createTweetElement = function(tweet) {
   let $tweet =  `
   <article class = "tweet">
@@ -16,7 +15,7 @@ const createTweetElement = function(tweet) {
       ${tweet.content.text}
     </div>
     <footer>
-      <span>2 days ago</span>
+      <span>${timeago.format(tweet.created_at)}</span>
       <span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-heart"></i>
@@ -26,6 +25,9 @@ const createTweetElement = function(tweet) {
   </article>`;
   return $tweet;
 }
+/*
+**rendering tweets
+*/
 const  renderTweets = (tweets) => {
   //clear #all-tweets to avoid duplication
   $('#all-tweets').empty();
@@ -39,18 +41,17 @@ const  renderTweets = (tweets) => {
 
 
 $(document).ready(function() {
-  loadTweets();
-  /*
-  **load Tweets
-  */
+
   const loadTweets = () => {
     $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));
   };
+    loadTweets();
   /*
   ** handler for posting new tweets
   */
   const postNewTweet = (event) => {
     event.preventDefault();
+   
     const formData = $("form").serialize();
     console.log(formData);
     $.ajax({
@@ -61,5 +62,6 @@ $(document).ready(function() {
     .then((res) => loadTweets(res));
   }
   $("form").on("submit",(e) => {postNewTweet(e)});
+ 
 });
 
