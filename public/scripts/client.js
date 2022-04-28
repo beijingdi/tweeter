@@ -67,16 +67,31 @@ $(document).ready(function() {
 
    // const safeHTML = `<p>${escape(textFromUser)}</p>`;
     // error handling for empty tweets
-    console.log(formData);
+    $("#error-message").slideUp(200);
     if (formData.length == 5) {
-      window.alert("tweet cannot be emplty");
-    }
-    // error handling for tweets exceeding 140 chars
+      $("#error-message").text("Tweet cannot be empty").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
+      $("#error-message").slideDown(200);
+  
+      return $error;
+  
+    } else 
     if (formData.length > 145) {
-      window.alert("tweet cannot exceeds 140 characters");
-      throw error;
+      $("#error-message").text("Tweet should not exceed 140 characters").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
+      $("#error-message").slideDown(200);
+  
+      return $error;
+  
     }
-    //load the tweet on successful submission and empty the tweet box
+ 
+    // if (formData.length == 5) {
+    //   window.alert("tweet cannot be emplty");
+    // }
+    // error handling for tweets exceeding 140 chars
+    // if (formData.length > 145) {
+    //   window.alert("tweet cannot exceeds 140 characters");
+    //   throw error;
+    // }
+    // //load the tweet on successful submission and empty the tweet box
     $.ajax({
       method: "POST",
       data: formData,
