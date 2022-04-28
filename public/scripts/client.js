@@ -5,6 +5,14 @@
  */
 
 /*
+** cross-site scripting protection - use where there is text input
+*/
+const escapee = (str)=> {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+/*
 ** create the html element for a tweet 
 */
 const createTweetElement = function(tweet) {
@@ -12,13 +20,13 @@ const createTweetElement = function(tweet) {
   <article class = "tweet">
     <header>
       <span>
-        <img src=${tweet.user.avatars}>
-        <p>${tweet.user.name}</p>
+        <img src= ${tweet.user.avatars}>
+        <p> ${tweet.user.name}</p>
       </span>
       <span>${tweet.user.handle}</span>
     </header>
     <div>
-      ${tweet.content.text}
+      ${escapee(tweet.content.text)}
     </div>
     <footer>
       <span>${timeago.format(tweet.created_at)}</span>
@@ -44,8 +52,6 @@ const  renderTweets = (tweets) => {
 }
 
 
-
-
 $(document).ready(function() {
 
   const loadTweets = () => {
@@ -56,9 +62,12 @@ $(document).ready(function() {
   */
   const postNewTweet = (event) => {
     event.preventDefault();
-   
+    //escape the input for corss-site scripting protection
     const formData = $("form").serialize();
+
+   // const safeHTML = `<p>${escape(textFromUser)}</p>`;
     // error handling for empty tweets
+    console.log(formData);
     if (formData.length == 5) {
       window.alert("tweet cannot be emplty");
     }
@@ -67,6 +76,7 @@ $(document).ready(function() {
       window.alert("tweet cannot exceeds 140 characters");
       throw error;
     }
+    //load the tweet on successful submission and empty the tweet box
     $.ajax({
       method: "POST",
       data: formData,
@@ -75,10 +85,11 @@ $(document).ready(function() {
     .then((res) => {
       $("#tweet-text").val("");
       loadTweets(res);
-    });
+    })
+    .catch((error) => {console.log(error);});
   };
 
-  $("form").on("submit",(e) => {postNewTweet(e)});
+  $("form").on("submit",(event) => {postNewTweet(event)});
   loadTweets();
 
 });
