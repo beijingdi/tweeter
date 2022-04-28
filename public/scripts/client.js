@@ -20,7 +20,7 @@ const createTweetElement = function(tweet) {
   <article class = "tweet">
     <header>
       <span class ="profile-name">
-        <img src= ${tweet.user.avatars}>
+        <img class ="tweetpfp" src = ${tweet.user.avatars}>
         <span>${tweet.user.name}</span>
       </span>
       <span>${tweet.user.handle}</span>
@@ -47,12 +47,17 @@ const  renderTweets = (tweets) => {
   $('#all-tweets').empty();
   for (let tweet of tweets) {
     const $tweet = createTweetElement(tweet);
-    $('#all-tweets').append($tweet);
+    $('#all-tweets').prepend($tweet);
   }
 }
 
 
 $(document).ready(function() {
+
+
+  $( "#banner-tweet" ).mouseover(function() {
+    $( "#new-tweet").toggle();
+  });
 
   const loadTweets = () => {
     $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));

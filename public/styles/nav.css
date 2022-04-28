@@ -32,6 +32,7 @@ nav span {
 .banner-tweet {
   font-family: "Source Sans Pro", sans-serif;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 .banner-icon {
