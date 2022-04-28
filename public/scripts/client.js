@@ -53,10 +53,10 @@ const  renderTweets = (tweets) => {
 
 
 $(document).ready(function() {
-
-
-  $( "#banner-tweet" ).mouseover(function() {
-    $( "#new-tweet").toggle();
+  $(".new-tweet").hide();
+  $(".banner-tweet").on("click", () => {
+    $(".new-tweet").slideToggle();
+    $("#tweet-text").focus();
   });
 
   const loadTweets = () => {
