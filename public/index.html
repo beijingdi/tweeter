@@ -42,7 +42,7 @@
       </div>
     
     </nav>
-
+    <div id="monitor">
     <header class = "header-content">
       <div>
           <img src="/images/profile-hex.png"> 
@@ -55,9 +55,11 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
+    
       <secion class="error">
         <p id="error-message"></p>
       </secion>
+     
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
         <form id="postNewTweet",method = "POST", action = "/tweets">
@@ -69,7 +71,7 @@
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>
-      </section>
+      </section> 
       <secion id="all-tweets">
         <!-- <article class = "tweet">
           <header></header>
@@ -101,5 +103,6 @@
         </article> -->
       </secion>
     </main>
+    </div>
   </body>
 </html>

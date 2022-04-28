@@ -41,6 +41,14 @@ article:hover {
 article.tweet header {
   margin: 0;
   height: 2em;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.profile-name {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 article div {
@@ -67,8 +75,25 @@ footer span i:hover {
   color: green;
 }
 
+@media only screen and (min-width: 768px) {
+  #monitor{
+    width: 100%;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items:flex-start;
+
+  }
+  .header-content{
+    width: 33.3%;
+  }
+
+  .container {
+    width: 66%;
+    float:right;
+  }
 
 
+}
 
 /*
  * Additional CSS can be defined below or in other CSS fil yes, as per instructions

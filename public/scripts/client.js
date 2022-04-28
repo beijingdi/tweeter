@@ -19,9 +19,9 @@ const createTweetElement = function(tweet) {
   let $tweet =  `
   <article class = "tweet">
     <header>
-      <span>
+      <span class ="profile-name">
         <img src= ${tweet.user.avatars}>
-        <p> ${tweet.user.name}</p>
+        <span>${tweet.user.name}</span>
       </span>
       <span>${tweet.user.handle}</span>
     </header>
@@ -65,7 +65,6 @@ $(document).ready(function() {
     //escape the input for corss-site scripting protection
     const formData = $("form").serialize();
 
-   // const safeHTML = `<p>${escape(textFromUser)}</p>`;
     // error handling for empty tweets
     $("#error-message").slideUp(200);
     if (formData.length == 5) {
@@ -83,15 +82,6 @@ $(document).ready(function() {
   
     }
  
-    // if (formData.length == 5) {
-    //   window.alert("tweet cannot be emplty");
-    // }
-    // error handling for tweets exceeding 140 chars
-    // if (formData.length > 145) {
-    //   window.alert("tweet cannot exceeds 140 characters");
-    //   throw error;
-    // }
-    // //load the tweet on successful submission and empty the tweet box
     $.ajax({
       method: "POST",
       data: formData,
