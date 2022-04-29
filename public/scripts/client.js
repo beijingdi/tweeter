@@ -29,7 +29,7 @@ const createTweetElement = function(tweet) {
       ${escapee(tweet.content.text)}
     </div>
     <footer>
-      <span>${timeago.format(tweet.created_at)}</span>
+      <span>${timeago.format(tweet.created_at, Date())}</span>
       <span>
         <i class="fa-solid fa-flag"></i>
         <i class="fa-solid fa-heart"></i>
