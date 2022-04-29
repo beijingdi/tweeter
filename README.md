@@ -17,7 +17,7 @@ The display of the application will adjust as screen size changes to below 768 p
 !["screenshot"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Shot%202022-04-29%20at%202.32.10%20AM.png)
 
 
-The video briefly shows how this app work
+This video briefly shows how this app works. 
 !["Vidoe"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Recording%202022-04-29%20at%202.22.55%20AM.mov)
 
 
