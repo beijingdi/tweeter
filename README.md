@@ -6,16 +6,19 @@ This repository is the starter code for the project: Students will fork and clon
 
 #Screenshots
 
-The initial page displays a navigator, a header that contains your name and profile picture, as well as a tweet area that lists your existing tweets
-!["User Registration Page - Please make sure you are registered and logged at the beginning"](https://github.com/beijingdi/tinyapp/blob/master/docs/registration.png)
+The initial page of this app displays a navigator, a header that contains your name and profile picture, as well as a tweet area that lists your existing tweets
+!["screenshot"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Shot%202022-04-29%20at%202.30.51%20AM.png)
 
-New tweets will be appeneded to the top of tweet area, with user information and time posted displayed
+New tweets will be prepeneded to the top of tweet area, with user information and time posted displayed
+!["screenshot"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Shot%202022-04-29%20at%202.31.29%20AM.png)
 
 
+The display of the application will adjust as screen size changes to below 768 px.
+!["screenshot"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Shot%202022-04-29%20at%202.32.10%20AM.png)
 
-The display of the application will adjust itself as screen size changes to below 768 px.
 
-The video below briefly shows how this app work
+The video briefly shows how this app work
+!["Vidoe"](https://github.com/beijingdi/tweeter/blob/master/doc/Screen%20Recording%202022-04-29%20at%202.22.55%20AM.mov)
 
 
 
