@@ -18,10 +18,6 @@ body {
   background-color: #f4f1ec;
   font-family: "Source Sans Pro", sans-serif;
   font-size: 24px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 }
 
 main {
@@ -34,11 +30,9 @@ main {
   border: 3px;
   border-style: solid;
 }
-/*
-** can create a new .css to display tweets
-*/
+
 article:hover {
-  box-shadow: 10px 10px 8px rgba(22, 22, 22, 0.2); 
+  box-shadow: 10px 10px 8px rgba(44, 44, 44, 0.6); 
 }
 
 article.tweet header {
@@ -57,6 +51,16 @@ article.tweet header {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  color: rgba(165, 164, 164, 0.878);
+  font-weight: 900;
+  margin: 1em 0.5em 0;
+}
+
+.handler{
+  font-weight: 900;
+  color: rgba(165, 164, 164, 0.878);
+  margin: 1em 0.5em 0;
+
 }
 
 .tweetpfp {
@@ -65,26 +69,39 @@ article.tweet header {
 }
 
 article div {
-  margin: 10px 10px;
+  margin: 0.5em 1em 0;
   border-bottom: black solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  word-wrap: break-word;
 
 }
 
-article.tweet footer {
+article footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 10px;
-  font-size: 12px;
-  height: 2em;
+  margin: 0.3em 1.4em;
+  font-size: 0.6em;
+  height: 1.6em;
 }
 
-footer span i:hover {
+
+footer i:hover {
   color: green;
+  cursor: pointer;
+ 
+}
+
+.scrollup-button {
+  position: fixed;
+  width: 1.5em;
+  height: 1.5em;
+  bottom: 1em;
+  right: 1em;
+  color: red;
   cursor: pointer;
 }
 
@@ -92,28 +109,20 @@ footer span i:hover {
   body {
     display: flex;
     flex-direction: row;
-    /* width: 100%; */
     justify-content: space-around;
-    /* align-items: center; */
 
   }
   .header-content{
     width: 33.3%;
-    margin: 200px 0 0 0;
+    margin: 210px 50px;
     align-items: center;
   }
 
   main {
     width: 66.6%;
-    /* float:right; */
-    margin: 180px 10px 0 40px;
+    margin: 180px 50px 20px 0;
   }
 }
 
 
-/*
-** clean up the usage of "container"
-*/
-/*
- * Additional CSS can be defined below or in other CSS fil yes, as per instructions
- */
+

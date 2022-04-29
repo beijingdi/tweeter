@@ -1,11 +1,12 @@
 nav {
   width: 100%;
   height: 120px;
-  background-color: #4056A1;
+  background-color: #5ab9d6;
   color: #FFFFFF;
   position: fixed; 
   z-index: 1;
   top:0;
+  padding: 1.25em;
 
 }
 
@@ -23,10 +24,8 @@ nav span {
   height: 100%;
 }
 
-.banner-title {
-  margin: auto 0;
-  flex-direction: row;
-  justify-content: center;
+.banner-content #write {
+  font-weight:bold;
 }
 
 .banner-tweet {
@@ -38,4 +37,11 @@ nav span {
 .banner-icon {
   margin-top: 0;
   color: red;
+}
+
+@media only screen and (min-width: 768px) {
+  nav {
+    background-color: #4056A1;
+    color: #FFFFFF;
+  }
 }

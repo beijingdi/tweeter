@@ -7,15 +7,11 @@ $(document).ready(() => {
       $(".scrollup-button").hide();
     }
   });
-  // const scrollFunction = () => {
-  //   if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
-  //     $(".scrollup-button").style.display = "block";
-  //   } else {
-  //     $(".scrollup-button").style.display = "none";
-  //   }
-  // }
+
   // don't use inline css
   // assign variables to j-query selectors that repeat/are hard to refer to
+  // avoid too many comments, enhance the cleaness of codes
+  // one function should do only one thing
   $(".scrollup-button").on("click", () => {
     $(window).scrollTop(0);
 

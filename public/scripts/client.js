@@ -19,11 +19,11 @@ const createTweetElement = function(tweet) {
   let $tweet =  `
   <article class = "tweet">
     <header>
-      <span class ="profile-name">
-        <img class ="tweetpfp" src = ${tweet.user.avatars}>
+      <span class="profile-name">
+        <img class="tweetpfp" src = ${tweet.user.avatars}>
         <span>${tweet.user.name}</span>
       </span>
-      <span>${tweet.user.handle}</span>
+      <span class="handler">${tweet.user.handle}</span>
     </header>
     <div>
       ${escapee(tweet.content.text)}
@@ -39,6 +39,7 @@ const createTweetElement = function(tweet) {
   </article>`;
   return $tweet;
 }
+
 /*
 **rendering tweets
 */
@@ -51,14 +52,17 @@ const  renderTweets = (tweets) => {
   }
 }
 
-
 $(document).ready(function() {
+  //tweet box is hidden by default and will slide down on click of double down arrows in the banner
   $(".new-tweet").hide();
   $(".banner-tweet").on("click", () => {
     $(".new-tweet").slideToggle();
     $("#tweet-text").focus();
   });
 
+  /*
+  **handler for loading all tweets
+  */
   const loadTweets = () => {
     $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));
   };
@@ -67,26 +71,24 @@ $(document).ready(function() {
   */
   const postNewTweet = (event) => {
     event.preventDefault();
-    //escape the input for corss-site scripting protection
     const formData = $("form").serialize();
 
     // error handling for empty tweets
     $("#error-message").slideUp(200);
-    if (formData.length == 5) {
+    if ($("textarea").val().length == 0) {
       $("#error-message").text("Tweet cannot be empty").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
       $("#error-message").slideDown(200);
-  
       return $error;
   
     } else 
-    if (formData.length > 145) {
+    if ($("textarea").val().length > 140) {
       $("#error-message").text("Tweet should not exceed 140 characters").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
       $("#error-message").slideDown(200);
-  
       return $error;
-  
     }
- 
+   /*
+   ** send ajax request each time the form is submitted
+   */
     $.ajax({
       method: "POST",
       data: formData,
@@ -99,9 +101,8 @@ $(document).ready(function() {
     .catch((error) => {console.log(error);});
   };
 
-  $("form").on("submit",(event) => {postNewTweet(event)});
+  $("form").submit((event) => {postNewTweet(event)});
   loadTweets();
-
 });
 
 
