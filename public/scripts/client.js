@@ -4,6 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+$(document).ready(() => {
+  hideTweetBox();
+  $("form").submit((event) => {postNewTweet(event)});
+  loadTweets();
+});
+
 /*
 ** cross-site scripting protection - use where there is text input
 */
@@ -12,9 +18,9 @@ const escapee = (str)=> {
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
-/*
-** create the html element for a tweet 
-*/
+
+
+
 const createTweetElement = function(tweet) {
   let $tweet =  `
   <article class = "tweet">
@@ -40,11 +46,21 @@ const createTweetElement = function(tweet) {
   return $tweet;
 }
 
-/*
-**rendering tweets
-*/
+
+const loadTweets = () => {
+  $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));
+};
+
+const hideTweetBox = () => {
+  $(".new-tweet").hide();
+  $(".banner-tweet").on("click", () => {
+    $(".new-tweet").slideToggle();
+    $("#tweet-text").focus();
+  });
+}
+
+
 const  renderTweets = (tweets) => {
-  //clear #all-tweets to avoid duplication
   $('#all-tweets').empty();
   for (let tweet of tweets) {
     const $tweet = createTweetElement(tweet);
@@ -52,44 +68,23 @@ const  renderTweets = (tweets) => {
   }
 }
 
-$(document).ready(function() {
-  //tweet box is hidden by default and will slide down on click of double down arrows in the banner
-  $(".new-tweet").hide();
-  $(".banner-tweet").on("click", () => {
-    $(".new-tweet").slideToggle();
-    $("#tweet-text").focus();
-  });
+const postNewTweet = (event) => {
+  event.preventDefault();
+  const formData = $("form").serialize();
 
-  /*
-  **handler for loading all tweets
-  */
-  const loadTweets = () => {
-    $.ajax('/tweets', {method: 'GET'}).then((res) => renderTweets(res));
-  };
-  /*
-  ** handler for posting new tweets
-  */
-  const postNewTweet = (event) => {
-    event.preventDefault();
-    const formData = $("form").serialize();
-
-    // error handling for empty tweets
-    $("#error-message").slideUp(200);
-    if ($("textarea").val().length == 0) {
-      $("#error-message").text("Tweet cannot be empty").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
-      $("#error-message").slideDown(200);
-      return $error;
-  
+  // error handling for empty tweets
+  $("#error-message").slideUp(200);
+  if ($("textarea").val().length == 0) {
+    $("#error-message").text("Tweet cannot be empty").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
+    $("#error-message").slideDown(200);
+    return $error;
     } else 
-    if ($("textarea").val().length > 140) {
-      $("#error-message").text("Tweet should not exceed 140 characters").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
-      $("#error-message").slideDown(200);
-      return $error;
-    }
-   /*
-   ** send ajax request each time the form is submitted
-   */
-    $.ajax({
+  if ($("textarea").val().length > 140) {
+    $("#error-message").text("Tweet should not exceed 140 characters").css({'color':'red', "margin-top": "10px", "padding":"8px", "font-style":"italic", "font-weight":"600"});
+    $("#error-message").slideDown(200);
+    return $error;
+  }
+   $.ajax({
       method: "POST",
       data: formData,
       url: "/tweets"
@@ -99,10 +94,5 @@ $(document).ready(function() {
       loadTweets(res);
     })
     .catch((error) => {console.log(error);});
-  };
-
-  $("form").submit((event) => {postNewTweet(event)});
-  loadTweets();
-});
-
+};
 
